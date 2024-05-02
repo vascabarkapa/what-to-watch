@@ -13,7 +13,7 @@ const Tabs = () => {
                 <li className="tab-item">
                     <NavLink to="/tv-shows" className="tab-link">TV Shows</NavLink>
                 </li>
-                <li className="tab-item">
+                <li className="tab-item tab-item-last">
                     <NavLink to="/movies" className="tab-link">Movies</NavLink>
                 </li>
             </ul>

@@ -77,6 +77,10 @@
     margin-right: 10px;
 }
 
+.tab-item-last {
+    margin-right: 0px;
+}
+
 .tab-link {
     text-decoration: none;
     color: #5B5B5D;
