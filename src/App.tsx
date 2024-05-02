@@ -1,6 +1,5 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import TVShows from './pages/TVShows';
 import Movies from './pages/Movies';
 import Tabs from './components/Tabs';
