@@ -39,6 +39,7 @@
 .tabs-container {
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 20px;
 }
 
 .tabs-list {
@@ -70,3 +71,30 @@
     color: #fff;
 }
 
+
+
+
+
+.search-container {
+    width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Dodatni stilovi za poboljšanje izgleda */
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.search-input::placeholder {
+    color: #aaa;
+}
