@@ -1,7 +1,13 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Tabs: React.FC = () => {
+    const location = useLocation();
+
+    if (location.pathname === "/404") {
+        return null;
+    }
+
     return (
         <nav className="tabs-container">
             <ul className="tabs-list">

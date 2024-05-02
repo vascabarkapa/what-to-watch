@@ -1,7 +1,14 @@
 import React from "react";
 import w2wLogo from "./../assets/w2w-logo.png";
+import { useLocation } from "react-router-dom";
 
 const Logo: React.FC = () => {
+    const location = useLocation();
+
+    if (location.pathname === "/404") {
+        return null;
+    }
+
     return (
         <a href="/">
             <div className="logo">

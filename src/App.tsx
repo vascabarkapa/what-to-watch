@@ -5,6 +5,7 @@ import Movies from './pages/Movies';
 import Tabs from './components/Tabs';
 import Search from './components/Search';
 import Logo from './components/Logo';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
         <Routes>
           <Route path="/tv-shows" Component={TVShows} />
           <Route path="/movies" Component={Movies} />
+          <Route path="/404" Component={NotFound} />
           <Route path="/" element={<Navigate to="/tv-shows" />} />
+          <Route path="*" element={<Navigate to="/404" />} />
         </Routes>
       </div>
     </BrowserRouter>
