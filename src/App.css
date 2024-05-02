@@ -1,15 +1,23 @@
+/* //////////////////////////
+    GENERAL
+////////////////////////// */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Primary: #4EA7DD */
+/* Secondary: #5B5B5D */
+/* Background: rgb(252, 252, 252) */
 
 * {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
+    background-color: rgb(252, 252, 252);
 }
 
 
-
-
-
+/* //////////////////////////
+    MAIN CONTAINER
+////////////////////////// */
 .container {
     width: 100%;
     margin-right: auto;
@@ -43,11 +51,9 @@
 }
 
 
-
-
-
-
-
+/* //////////////////////////
+    TABS
+////////////////////////// */
 .tabs-container {
     display: flex;
     justify-content: flex-start;
@@ -67,26 +73,28 @@
 
 .tab-link {
     text-decoration: none;
-    color: #333;
+    color: #5B5B5D;
     padding: 10px 15px;
     border-radius: 5px;
     transition: all 0.3s ease;
+    border: 1px solid #4EA7DD;
 }
 
 .tab-link:hover {
     background-color: #f0f0f0;
-    color: #555;
+    color: #5B5B5D;
 }
 
 .tab-link.active {
-    background-color: #007bff;
+    background-color: #4EA7DD;
     color: #fff;
+    font-weight: bold;
 }
 
 
-
-
-
+/* //////////////////////////
+    SEARCH
+////////////////////////// */
 .search-container {
     width: 100%;
 }
@@ -98,11 +106,13 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    background-color: white;
+    color: #5B5B5D;
 }
 
 .search-input:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #4EA7DD;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
@@ -111,32 +121,21 @@
 }
 
 
-
-
-
-
-
+/* //////////////////////////
+    CARD
+////////////////////////// */
 .card-container {
-    margin-top: 20px;
+    margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 20px;
 }
 
 @media screen and (max-width: 600px) {
     .movies-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
-
-
-
-
-
-
-
-
-
 
 .card {
     width: auto;
@@ -164,4 +163,13 @@
 .card h2 {
     margin-top: 10px;
     font-size: 1.2rem;
+}
+
+
+/* //////////////////////////
+    LOGO
+////////////////////////// */
+.logo {
+    margin: 50px 0;
+    text-align: center;
 }

@@ -4,11 +4,13 @@ import TVShows from './pages/TVShows';
 import Movies from './pages/Movies';
 import Tabs from './components/Tabs';
 import Search from './components/Search';
+import Logo from './components/Logo';
 
 function App() {
   return (
     <BrowserRouter>
       <div className='container'>
+        <Logo />
         <Tabs />
         <Search />
         <Routes>
