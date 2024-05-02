@@ -3,13 +3,13 @@ import { NavLink } from "react-router-dom";
 
 const Tabs: React.FC = () => {
     return (
-        <nav>
-            <ul>
-                <li>
-                    <NavLink to="/tv-shows">TV Shows</NavLink>
+        <nav className="tabs-container">
+            <ul className="tabs-list">
+                <li className="tab-item">
+                    <NavLink to="/tv-shows" className="tab-link">TV Shows</NavLink>
                 </li>
-                <li>
-                    <NavLink to="/movies">Movies</NavLink>
+                <li className="tab-item">
+                    <NavLink to="/movies" className="tab-link">Movies</NavLink>
                 </li>
             </ul>
         </nav>
