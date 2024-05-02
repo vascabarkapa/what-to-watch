@@ -11,7 +11,7 @@ const Card: React.FC<CardProps> = ({ media }) => {
 
     return (
         <div className="card">
-            <img src={ImageHelper.generateBackdropLink(media?.backdrop_path)} alt="Slika filma" />
+            <img src={ImageHelper.generateBackdropLink(media?.backdrop_path)} alt="Slika filma" loading="lazy" />
             <div className="title-wrapper">
                 <h2>{(media as Movie).title || (media as TVShow).name}</h2>
                 <span><Star />&nbsp;{media.vote_average.toFixed(2)} ({media.vote_count})</span>
