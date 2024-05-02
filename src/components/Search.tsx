@@ -7,9 +7,23 @@ const Search = () => {
         return null;
     }
 
+    const handleQueryChange = (event: any) => {
+        const inputValue = event.target.value.trim();
+        const searchParams = new URLSearchParams(location.search);
+
+        if (inputValue !== '') {
+            searchParams.set('q', inputValue);
+        } else {
+            searchParams.delete('q');
+        }
+
+        const newUrl = location.pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
+        window.history.pushState(null, '', newUrl);
+    };
+
     return (
         <div className="search-container">
-            <input type="search" className="search-input" placeholder="Search by title..." />
+            <input type="search" onChange={handleQueryChange} className="search-input" placeholder="Search by title..." />
         </div>
     );
 };
