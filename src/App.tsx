@@ -7,7 +7,7 @@ import Tabs from './components/Tabs';
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div className='container'>
         <Tabs />
         <Routes>
           <Route path="/tv-shows" Component={TVShows} />
