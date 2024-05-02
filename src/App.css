@@ -217,6 +217,16 @@ input[type="search"]::-webkit-search-cancel-button {
     text-align: center;
 }
 
+.logo-img {
+    width: 20%;
+}
+
+@media screen and (max-width: 573px) {
+    .logo-img {
+        width: 45%;
+    }
+}
+
 
 /* //////////////////////////
     NOT FOUND

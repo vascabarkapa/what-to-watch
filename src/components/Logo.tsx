@@ -11,7 +11,7 @@ const Logo = () => {
     return (
         <a href="/">
             <div className="logo">
-                <img src={w2wLogo} width={'20%'} alt="W2W Logo" />
+                <img className="logo-img" src={w2wLogo} alt="W2W Logo" />
             </div>
         </a>
     );
