@@ -1,10 +1,19 @@
 import React from "react";
+import Card from "../components/Card";
 
 const TVShows: React.FC = () => {
     return (
-        <div>
-            <h2>TV Shows Content</h2>
-            <p>This is the content of TV Shows.</p>
+        <div className="card-container">
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
         </div>
     );
 };

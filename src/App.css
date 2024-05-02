@@ -88,7 +88,6 @@
     box-sizing: border-box;
 }
 
-/* Dodatni stilovi za poboljšanje izgleda */
 .search-input:focus {
     outline: none;
     border-color: #007bff;
@@ -104,13 +103,12 @@
 
 
 .card {
-    width: 100%; /* Prilagodite širinu kartice prema potrebi */
+    width: auto;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Dodavanje sjene */
-    transition: box-shadow 0.3s ease; /* Efekat pri hoveru */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 
-    /* Centriranje sadržaja */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,12 +116,12 @@
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Promjena sjene na hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card img {
     width: 100%;
-    border-radius: 8px; /* Zaobljeni rubovi slike */
+    border-radius: 8px;
 }
 
 .card h2 {
@@ -134,14 +132,13 @@
 
 
 
-.movies-container {
+.card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 20px;
 }
 
 @media screen and (max-width: 600px) {
-    /* Na ekranima sa širinom manjom od 600px, prikaži jednu karticu po redu */
     .movies-container {
         grid-template-columns: 1fr;
     }
