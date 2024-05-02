@@ -3,7 +3,7 @@ import Card from "../components/Card";
 
 const Movies: React.FC = () => {
     return (
-        <div>
+        <div className="movies-container">
             <Card />
             <Card />
             <Card />

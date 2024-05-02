@@ -104,7 +104,7 @@
 
 
 .card {
-    width: 200px; /* Prilagodite širinu kartice prema potrebi */
+    width: 100%; /* Prilagodite širinu kartice prema potrebi */
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Dodavanje sjene */
@@ -129,4 +129,20 @@
 .card h2 {
     margin-top: 10px;
     font-size: 1.2rem;
+}
+
+
+
+
+.movies-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    /* Na ekranima sa širinom manjom od 600px, prikaži jednu karticu po redu */
+    .movies-container {
+        grid-template-columns: 1fr;
+    }
 }
