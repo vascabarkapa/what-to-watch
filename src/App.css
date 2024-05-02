@@ -57,7 +57,7 @@
 .tabs-container {
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 @media screen and (max-width: 426px) {
@@ -83,7 +83,7 @@
     padding: 10px 15px;
     border-radius: 5px;
     transition: all 0.3s ease;
-    border: 1px solid #4EA7DD;
+    border: 2px solid #4EA7DD;
 }
 
 .tab-link:hover {
