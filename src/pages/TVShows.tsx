@@ -9,7 +9,7 @@ const TVShows = () => {
     useEffect(() => {
         TvShowService.getTopRatedTvShows().then((response) => {
             if (response) {
-                setTvShows(response.results);
+                setTvShows(response.results.slice(0, 10));
             }
         })
     }, []);

@@ -9,7 +9,7 @@ const Movies = () => {
     useEffect(() => {
         MovieService.getTopRatedMovies().then((response) => {
             if (response) {
-                setMovies(response.results);
+                setMovies(response.results.slice(0, 10));
             }
         })
     }, []);
