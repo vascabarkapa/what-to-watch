@@ -1,8 +1,7 @@
-import React from "react";
 import tvLogo from "./../assets/tv-logo.png";
 import { Link } from "react-router-dom";
 
-const NotFound: React.FC = () => {
+const NotFound = () => {
     return (
         <div className="not-found">
             <img src={tvLogo} alt="tv logo" width={'50%'} />

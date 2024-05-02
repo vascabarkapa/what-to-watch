@@ -1,6 +1,4 @@
-import React from "react";
-
-const Card: React.FC = () => {
+const Card = () => {
     return (
         <div className="card">
             <img src="putanja_do_slike" alt="Slika filma" />

@@ -1,7 +1,6 @@
-import React from "react";
 import Card from "../components/Card";
 
-const Movies: React.FC = () => {
+const Movies = () => {
     return (
         <div className="card-container">
             <Card />
