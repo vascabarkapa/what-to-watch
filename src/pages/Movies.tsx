@@ -9,7 +9,6 @@ const Movies = () => {
     useEffect(() => {
         MovieService.getTopRatedMovies().then((response) => {
             if (response) {
-                console.log(response);
                 setMovies(response.results);
             }
         })
@@ -18,7 +17,7 @@ const Movies = () => {
     return (
         <div className="card-container">
             {movies.map((movie) => (
-                <Card key={movie.id} movie={movie} />
+                <Card key={movie.id} media={movie} />
             ))}
         </div>
     );

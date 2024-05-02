@@ -1,18 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import TvShowService from "../services/tvShowService";
+import { TVShow } from "../models/tvShow";
 
 const TVShows = () => {
+    const [tvShows, setTvShows] = useState([] as TVShow[]);
+
     useEffect(() => {
         TvShowService.getTopRatedTvShows().then((response) => {
-            if(response) {
-                console.log(response);
+            if (response) {
+                setTvShows(response.results);
             }
         })
     }, []);
+
     return (
         <div className="card-container">
-Nema
+            {tvShows.map((tvShow) => (
+                <Card key={tvShow.id} media={tvShow} />
+            ))}
         </div>
     );
 };
