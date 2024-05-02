@@ -102,6 +102,30 @@
 
 
 
+
+
+.card-container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .movies-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
+
+
 .card {
     width: auto;
     padding: 10px;
@@ -127,19 +151,4 @@
 .card h2 {
     margin-top: 10px;
     font-size: 1.2rem;
-}
-
-
-
-
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 20px;
-}
-
-@media screen and (max-width: 600px) {
-    .movies-container {
-        grid-template-columns: 1fr;
-    }
 }
