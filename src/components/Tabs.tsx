@@ -1,15 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Tabs: React.FC = () => {
     return (
         <nav>
             <ul>
                 <li>
-                    <Link to="/tv-shows">TV Shows</Link>
+                    <NavLink to="/tv-shows">TV Shows</NavLink>
                 </li>
                 <li>
-                    <Link to="/movies">Movies</Link>
+                    <NavLink to="/movies">Movies</NavLink>
                 </li>
             </ul>
         </nav>
