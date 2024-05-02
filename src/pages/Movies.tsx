@@ -1,10 +1,12 @@
 import React from "react";
+import Card from "../components/Card";
 
 const Movies: React.FC = () => {
     return (
         <div>
-            <h2>Movies</h2>
-            <p>This is the content of Movies.</p>
+            <Card />
+            <Card />
+            <Card />
         </div>
     );
 };
