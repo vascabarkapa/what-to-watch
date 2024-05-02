@@ -12,14 +12,6 @@ axiosInstance.interceptors.request.use((config: any) => {
             ...config.headers,
             'Authorization': `Bearer ${token}`,
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-        };
-    } else {
-        config.headers = {
-            ...config.headers,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
         };
     }
 
