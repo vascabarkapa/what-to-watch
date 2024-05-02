@@ -98,3 +98,35 @@
 .search-input::placeholder {
     color: #aaa;
 }
+
+
+
+
+
+.card {
+    width: 200px; /* Prilagodite širinu kartice prema potrebi */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Dodavanje sjene */
+    transition: box-shadow 0.3s ease; /* Efekat pri hoveru */
+
+    /* Centriranje sadržaja */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Promjena sjene na hover */
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px; /* Zaobljeni rubovi slike */
+}
+
+.card h2 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}

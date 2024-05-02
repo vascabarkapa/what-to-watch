@@ -7,6 +7,13 @@ const Movies: React.FC = () => {
             <Card />
             <Card />
             <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
         </div>
     );
 };
