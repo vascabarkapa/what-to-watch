@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import MovieService from "../services/movieService";
-import { Movie } from "../models/movie";
+import Movie from "../models/movie";
 
 const Movies = () => {
     const [movies, setMovies] = useState([] as Movie[]);

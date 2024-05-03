@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import TvShowService from "../services/tvShowService";
-import { TVShow } from "../models/tvShow";
+import TVShow from "../models/tvShow";
 
 const TVShows = () => {
     const [tvShows, setTvShows] = useState([] as TVShow[]);

@@ -1,5 +1,5 @@
-import { Movie } from "../models/movie";
-import { TVShow } from "../models/tvShow";
+import Movie from "../models/movie";
+import TVShow from "../models/tvShow";
 import ImageHelper from "../utils/ImageHelper";
 import Star from "./Star";
 
