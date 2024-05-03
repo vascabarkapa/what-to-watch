@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({ media }) => {
     }
 
     return (
-        <div className="card clickable-card" onClick={() => navigateToDetailsPage(media)}>
+        <div className="card" onClick={() => navigateToDetailsPage(media)}>
             <img src={ImageHelper.generateBackdropLink(media?.backdrop_path)} alt={media?.backdrop_path} loading="eager" />
             <div className="title-wrapper">
                 <h2>{(media as Movie).title || (media as TVShow).name}</h2>
