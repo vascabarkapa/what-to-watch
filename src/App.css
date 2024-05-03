@@ -403,3 +403,22 @@ input[type="search"]::-webkit-search-cancel-button {
     margin: 20px 0 0 20px;
     text-align: justify;
 }
+
+@media screen and (max-width: 576px) {
+    .overview-flex {
+        flex-direction: column;
+        flex: 1;
+        margin: 0;
+    }
+
+    .poster {
+        flex: 1;
+        margin-top: 20px;
+    }
+
+    .overview {
+        flex: 1;
+        margin: 10px 0 10px 0;
+        text-align: justify;
+    }
+}

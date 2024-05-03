@@ -86,7 +86,7 @@ const Details = () => {
                             <span className="d-flex align-items-center"><Star />&nbsp;{media?.vote_average && media.vote_average.toFixed(2)} ({media?.vote_count})</span>
                         </div>
                         <div>{media?.genres?.map(genre => genre.name).join(', ')}</div>
-                        <div className="d-flex">
+                        <div className="d-flex overview-flex">
                             <div className="poster">
                                 <img src={ImageHelper.generateBackdropLink(media?.poster_path)} alt={media?.poster_path} loading="eager" />
                             </div>
