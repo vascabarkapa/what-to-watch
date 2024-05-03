@@ -7,7 +7,7 @@ const Search = () => {
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
-        const queryParam = searchParams.get('q');
+        const queryParam = searchParams.get('query');
         setQuery(queryParam || '');
     }, [location.search]);
 
@@ -16,9 +16,9 @@ const Search = () => {
         const searchParams = new URLSearchParams(location.search);
 
         if (inputValue !== '') {
-            searchParams.set('q', inputValue);
+            searchParams.set('query', inputValue);
         } else {
-            searchParams.delete('q');
+            searchParams.delete('query');
         }
 
         const newUrl = location.pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
