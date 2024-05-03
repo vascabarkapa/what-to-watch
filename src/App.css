@@ -260,3 +260,32 @@ input[type="search"]::-webkit-search-cancel-button {
     color: #5B5B5D;
     font-weight: 500;
 }
+
+
+/* //////////////////////////
+    DETAILS
+////////////////////////// */
+.mt-50 {
+    margin-top: 50px;
+}
+
+.back {
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    border: 2px solid #4EA7DD;
+    background-color: #4EA7DD;
+    color: #fff;
+    font-weight: bold;
+}
+
+.back:hover {
+    background-color: #f0f0f0;
+    color: #5B5B5D;
+    cursor: pointer;
+}
+
+.back-img {
+    height: 40px;
+    margin-left: 10px;
+}
