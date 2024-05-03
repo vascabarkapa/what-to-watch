@@ -10,6 +10,8 @@ import TVShow from "../models/tvShow";
 import Movie from "../models/movie";
 import Media from "../models/media";
 import Loading from "../components/Loading";
+import Trailer from "../components/Trailer";
+import Video from "../models/video";
 
 const Details = () => {
     const location = useLocation();
@@ -21,6 +23,7 @@ const Details = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [media, setMedia] = useState({} as Media);
+    const [video, setVideo] = useState({} as Video);
 
     function navigateBack() {
         navigate("/tv-shows");
@@ -33,13 +36,24 @@ const Details = () => {
                 MovieService.getMovieDetails(+id).then((response) => {
                     if (response) {
                         setMedia(response as Movie);
-                        setIsLoading(false);
+                        MovieService.getMovieTrailer(+id).then((videoResponse) => {
+                            if (videoResponse) {
+                                setVideo(videoResponse.results.find((video: Video) => video.type === "Trailer"));
+                                setIsLoading(false);
+                            }
+                        });
                     }
                 });
             } else {
                 TvShowService.getTvShowDetails(+id).then((response) => {
                     if (response) {
                         setMedia(response as TVShow);
+                        TvShowService.getTvShowTrailer(+id).then((videoResponse) => {
+                            if (videoResponse) {
+                                setVideo(videoResponse.results.find((video: Video) => video.type === "Trailer"));
+                                setIsLoading(false);
+                            }
+                        });
                         setIsLoading(false);
                     }
                 });
@@ -61,8 +75,11 @@ const Details = () => {
                     :
                     <div className="details">
                         {
-                            media?.backdrop_path &&
-                            <img src={ImageHelper.generateBackdropLink(media?.backdrop_path)} alt={media?.backdrop_path} loading="eager" />
+                            video ?
+                                <Trailer code={video?.key} />
+                                :
+                                media?.backdrop_path &&
+                                <img src={ImageHelper.generateBackdropLink(media?.backdrop_path)} alt={media?.backdrop_path} loading="eager" />
                         }
                         <div className="title-wrapper">
                             <h2>{(media as TVShow).name || (media as Movie).title}</h2>
