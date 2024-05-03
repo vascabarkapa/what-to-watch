@@ -12,9 +12,15 @@ const getMovieDetails = async (id: number) => {
     return response.data;
 }
 
+const getMovieTrailer = async (id: number) => {
+    const response = await get(`${ENDPOINT}/${id}/videos`);
+    return response.data;
+}
+
 const MovieService = {
     getTopRatedMovies,
-    getMovieDetails
+    getMovieDetails,
+    getMovieTrailer
 }
 
 export default MovieService;

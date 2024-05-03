@@ -12,6 +12,11 @@ const getTvShowDetails = async (id: number) => {
     return response.data;
 }
 
+const getTvShowTrailer = async (id: number) => {
+    const response = await get(`${ENDPOINT}/${id}/videos`);
+    return response.data;
+}
+
 const TvShowService = {
     getTopRatedTvShows,
     getTvShowDetails
