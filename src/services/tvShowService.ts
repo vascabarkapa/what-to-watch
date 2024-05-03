@@ -19,7 +19,8 @@ const getTvShowTrailer = async (id: number) => {
 
 const TvShowService = {
     getTopRatedTvShows,
-    getTvShowDetails
+    getTvShowDetails,
+    getTvShowTrailer
 }
 
 export default TvShowService;

@@ -4,7 +4,7 @@ type Props = {
     code: string;
 }
 
-const Video: React.FC<Props> = ({ code }) => {
+const Trailer: React.FC<Props> = ({ code }) => {
     return (
         <iframe
             src={`https://www.youtube.com/embed/${code}`}
@@ -15,4 +15,4 @@ const Video: React.FC<Props> = ({ code }) => {
     );
 };
 
-export default Video;
+export default Trailer;
