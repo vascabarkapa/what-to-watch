@@ -9,6 +9,7 @@ import ImageHelper from "../utils/ImageHelper";
 import TVShow from "../models/tvShow";
 import Movie from "../models/movie";
 import Media from "../models/media";
+import Loading from "../components/Loading";
 
 const Details = () => {
     const location = useLocation();
@@ -47,29 +48,33 @@ const Details = () => {
     }, []);
 
     return (
-        !isLoading ?
-            <div className="container my-50">
-                <div className="back-container">
-                    <button className="back" onClick={() => navigateBack()}>
-                        <LeftArrow />&nbsp;&nbsp;Back
-                    </button>
-                    <img className="back-img" src={w2wLogo} alt="W2W Logo" />
-                </div>
-                <div className="details">
-                    <img src={ImageHelper.generateBackdropLink(media?.backdrop_path)} alt={media?.backdrop_path} loading="eager" />
-                    <div className="title-wrapper">
-                        <h2>{(media as TVShow).name || (media as Movie).title}</h2>
-                        <span className="d-flex align-items-center"><Star />&nbsp;{media?.vote_average} ({media?.vote_count})</span>
-                    </div>
-                    <div>{media?.genres?.map(genre => genre.name).join(', ')}</div>
-                    <div className="d-flex">
-                        <div className="poster">
-                            <img src={ImageHelper.generateBackdropLink(media?.poster_path)} alt={media?.poster_path} loading="eager" />
+        <div className="container my-50">
+            <div className="back-container">
+                <button className="back" onClick={() => navigateBack()}>
+                    <LeftArrow />&nbsp;&nbsp;Back
+                </button>
+                <img className="back-img" src={w2wLogo} alt="W2W Logo" />
+            </div>
+            {
+                isLoading ?
+                    <Loading />
+                    :
+                    <div className="details">
+                        <img src={ImageHelper.generateBackdropLink(media?.backdrop_path)} alt={media?.backdrop_path} loading="eager" />
+                        <div className="title-wrapper">
+                            <h2>{(media as TVShow).name || (media as Movie).title}</h2>
+                            <span className="d-flex align-items-center"><Star />&nbsp;{media?.vote_average} ({media?.vote_count})</span>
                         </div>
-                        <div className="overview">{media?.overview}</div>
+                        <div>{media?.genres?.map(genre => genre.name).join(', ')}</div>
+                        <div className="d-flex">
+                            <div className="poster">
+                                <img src={ImageHelper.generateBackdropLink(media?.poster_path)} alt={media?.poster_path} loading="eager" />
+                            </div>
+                            <div className="overview">{media?.overview}</div>
+                        </div>
                     </div>
-                </div>
-            </div> : <></>
+            }
+        </div>
     );
 };
 
