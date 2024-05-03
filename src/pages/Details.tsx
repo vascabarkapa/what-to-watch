@@ -60,7 +60,10 @@ const Details = () => {
                     <Loading />
                     :
                     <div className="details">
-                        <img src={ImageHelper.generateBackdropLink(media?.backdrop_path)} alt={media?.backdrop_path} loading="eager" />
+                        {
+                            media?.backdrop_path &&
+                            <img src={ImageHelper.generateBackdropLink(media?.backdrop_path)} alt={media?.backdrop_path} loading="eager" />
+                        }
                         <div className="title-wrapper">
                             <h2>{(media as TVShow).name || (media as Movie).title}</h2>
                             <span className="d-flex align-items-center"><Star />&nbsp;{media?.vote_average && media.vote_average.toFixed(2)} ({media?.vote_count})</span>
