@@ -17,8 +17,9 @@ function App() {
         <Search />
         <Routes>
           <Route path="/tv-shows" Component={TVShows} />
+          <Route path="/tv-shows/:id" Component={Details} />
           <Route path="/movies" Component={Movies} />
-          <Route path="/details/:id" Component={Details} />
+          <Route path="/movies/:id" Component={Details} />
           <Route path="/404" Component={NotFound} />
           <Route path="/" element={<Navigate to="/tv-shows" />} />
           <Route path="*" element={<Navigate to="/404" />} />

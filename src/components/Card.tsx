@@ -1,16 +1,29 @@
+import { useNavigate } from "react-router-dom";
 import Movie from "../models/movie";
 import TVShow from "../models/tvShow";
 import ImageHelper from "../utils/ImageHelper";
 import Star from "./Star";
+import Media from "../models/media";
 
 interface CardProps {
     media: Movie | TVShow;
 }
 
 const Card: React.FC<CardProps> = ({ media }) => {
+    const navigate = useNavigate();
+
+    function navigateToDetailsPage(media: Media) {
+        const isMovie = (media as Movie).title !== undefined;
+
+        if (isMovie) {
+            navigate(`/movies/${media?.id}`);
+        } else {
+            navigate(`/tv-shows/${media?.id}`);
+        }
+    }
 
     return (
-        <div className="card">
+        <div className="card" onClick={() => navigateToDetailsPage(media)}>
             <img src={ImageHelper.generateBackdropLink(media?.backdrop_path)} alt="Slika filma" loading="eager" />
             <div className="title-wrapper">
                 <h2>{(media as Movie).title || (media as TVShow).name}</h2>
