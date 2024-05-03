@@ -6,12 +6,15 @@ import Logo from "../components/Logo";
 import Tabs from "../components/Tabs";
 import Search from "../components/Search";
 import SearchService from "../services/searchService";
+import Loading from "../components/Loading";
 
 const Movies = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [movies, setMovies] = useState([] as Movie[]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         if (searchQuery.length >= 3) {
             const timer = setTimeout(() => {
                 fetchSearchResults();
@@ -27,6 +30,7 @@ const Movies = () => {
         SearchService.searchMoviesbyTitle(searchQuery).then((response) => {
             if (response) {
                 setMovies(response.results);
+                setIsLoading(false);
             }
         });
     };
@@ -35,6 +39,7 @@ const Movies = () => {
         MovieService.getTopRatedMovies().then((response) => {
             if (response) {
                 setMovies(response.results.slice(0, 10));
+                setIsLoading(false);
             }
         });
     };
@@ -48,11 +53,16 @@ const Movies = () => {
             <Logo />
             <Tabs />
             <Search value={searchQuery} onChange={handleInputChange} />
-            <div className="card-container">
-                {movies.map((movie) => (
-                    <Card key={movie.id} media={movie} />
-                ))}
-            </div>
+            {
+                isLoading ?
+                    <Loading />
+                    :
+                    <div className="card-container">
+                        {movies.map((movie) => (
+                            <Card key={movie.id} media={movie} />
+                        ))}
+                    </div>
+            }
         </div>
     );
 };
