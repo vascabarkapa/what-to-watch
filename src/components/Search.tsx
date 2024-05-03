@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import SearchService from "../services/searchService";
 
 const Search = () => {
     const location = useLocation();
@@ -20,6 +21,10 @@ const Search = () => {
         } else {
             searchParams.delete('q');
         }
+
+        SearchService.searchMoviesbyTitle(event.target.value).then((response: any) => {
+            console.log(response)
+        })
 
         const newUrl = location.pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
         window.history.pushState(null, '', newUrl);
