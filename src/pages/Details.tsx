@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import w2wLogo from "./../assets/w2w-logo.png";
+import LeftArrow from "../components/LeftArrow";
 
 const Details = () => {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Details = () => {
         <div className="container mt-50">
             <div className="back-container">
                 <button className="back" onClick={() => navigateBack()}>
-                    &larr; Back
+                    <LeftArrow />&nbsp;&nbsp;Back
                 </button>
                 <img className="back-img" src={w2wLogo} alt="W2W Logo" />
             </div>
