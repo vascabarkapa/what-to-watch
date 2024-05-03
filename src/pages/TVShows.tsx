@@ -7,6 +7,7 @@ import Tabs from "../components/Tabs";
 import Search from "../components/Search";
 import SearchService from "../services/searchService";
 import Loading from "../components/Loading";
+import SearchNotFound from "../components/SearchNotFound";
 
 const TVShows = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -57,11 +58,14 @@ const TVShows = () => {
                 isLoading ?
                     <Loading />
                     :
-                    <div className="card-container">
-                        {tvShows.map((tvShow) => (
-                            <Card key={tvShow.id} media={tvShow} />
-                        ))}
-                    </div>
+                    tvShows.length > 0 ?
+                        <div className="card-container">
+                            {tvShows.map((tvShow) => (
+                                <Card key={tvShow.id} media={tvShow} />
+                            ))}
+                        </div>
+                        :
+                        <SearchNotFound media={'TV Shows'} />
             }
         </div>
     );

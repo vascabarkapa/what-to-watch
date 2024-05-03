@@ -7,6 +7,7 @@ import Tabs from "../components/Tabs";
 import Search from "../components/Search";
 import SearchService from "../services/searchService";
 import Loading from "../components/Loading";
+import SearchNotFound from "../components/SearchNotFound";
 
 const Movies = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -57,11 +58,14 @@ const Movies = () => {
                 isLoading ?
                     <Loading />
                     :
-                    <div className="card-container">
-                        {movies.map((movie) => (
-                            <Card key={movie.id} media={movie} />
-                        ))}
-                    </div>
+                    movies.length > 0 ?
+                        <div className="card-container">
+                            {movies.map((movie) => (
+                                <Card key={movie.id} media={movie} />
+                            ))}
+                        </div>
+                        :
+                        <SearchNotFound media={'Movies'} />
             }
         </div>
     );
