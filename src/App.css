@@ -285,6 +285,10 @@ input[type="search"]::-webkit-search-cancel-button {
     cursor: pointer;
 }
 
+.back-container {
+    display: flex;
+}
+
 .back-img {
     height: 40px;
     margin-left: 10px;
