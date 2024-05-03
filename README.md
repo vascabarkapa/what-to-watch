@@ -1,4 +1,4 @@
-<img src="src/assets/w2w-logo.png" alt="W2W Logo" width="200">
+<img src="src/assets/w2w-logo.png" alt="W2W Logo" width="220">
 
 
 # What to Watch - Streamline Your Entertaiment
