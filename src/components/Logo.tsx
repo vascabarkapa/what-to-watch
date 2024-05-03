@@ -9,11 +9,11 @@ const Logo = () => {
     }
 
     return (
-        <a href="/">
-            <div className="logo">
+        <div className="logo">
+            <a href="/">
                 <img className="logo-img" src={w2wLogo} alt="W2W Logo" />
-            </div>
-        </a>
+            </a>
+        </div>
     );
 };
 
