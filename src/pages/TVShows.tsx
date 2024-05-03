@@ -6,12 +6,15 @@ import Logo from "../components/Logo";
 import Tabs from "../components/Tabs";
 import Search from "../components/Search";
 import SearchService from "../services/searchService";
+import Loading from "../components/Loading";
 
 const TVShows = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [tvShows, setTvShows] = useState([] as TVShow[]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         if (searchQuery.length >= 3) {
             const timer = setTimeout(() => {
                 fetchSearchResults();
@@ -27,6 +30,7 @@ const TVShows = () => {
         SearchService.searchTvShowsbyTitle(searchQuery).then((response) => {
             if (response) {
                 setTvShows(response.results);
+                setIsLoading(false);
             }
         });
     };
@@ -35,6 +39,7 @@ const TVShows = () => {
         TvShowService.getTopRatedTvShows().then((response) => {
             if (response) {
                 setTvShows(response.results.slice(0, 10));
+                setIsLoading(false);
             }
         });
     };
@@ -48,11 +53,16 @@ const TVShows = () => {
             <Logo />
             <Tabs />
             <Search value={searchQuery} onChange={handleInputChange} />
-            <div className="card-container">
-                {tvShows.map((tvShow) => (
-                    <Card key={tvShow.id} media={tvShow} />
-                ))}
-            </div>
+            {
+                isLoading ?
+                    <Loading />
+                    :
+                    <div className="card-container">
+                        {tvShows.map((tvShow) => (
+                            <Card key={tvShow.id} media={tvShow} />
+                        ))}
+                    </div>
+            }
         </div>
     );
 };
