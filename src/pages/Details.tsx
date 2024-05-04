@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/root';
 import MovieService from '../services/movieService';
 import TvShowService from '../services/tvShowService';
 import ImageHelper from '../utils/ImageHelper';
@@ -43,7 +41,7 @@ const useMediaDetails = (id: string, isMovies: boolean) => {
         fetchData();
 
         return () => {
-            setIsLoading(false); // Cleanup to avoid setting state after unmount
+            setIsLoading(false);
         };
     }, [id, isMovies]);
 
