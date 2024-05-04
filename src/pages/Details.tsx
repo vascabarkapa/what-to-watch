@@ -54,6 +54,7 @@ const Details = () => {
                     }
                 } catch (error) {
                     console.error('Error fetching movie details:', error);
+                    navigate('/404');
                 } finally {
                     setIsLoading(false);
                 }
@@ -69,6 +70,7 @@ const Details = () => {
                     }
                 } catch (error) {
                     console.error('Error fetching TV show details:', error);
+                    navigate('/404');
                 } finally {
                     setIsLoading(false);
                 }
