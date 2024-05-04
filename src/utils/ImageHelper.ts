@@ -1,11 +1,11 @@
 const TMDB_LINK = "https://image.tmdb.org/t/p/original";
 
-function generateBackdropLink(backdropPath: string) {
+function generateImageLink(backdropPath: string) {
     return `${TMDB_LINK}/${backdropPath}`;
 }
 
 const ImageHelper = {
-    generateBackdropLink
+    generateImageLink
 }
 
 export default ImageHelper;
