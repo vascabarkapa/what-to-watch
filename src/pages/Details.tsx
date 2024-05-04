@@ -35,35 +35,48 @@ const Details = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        if (id) {
-            if (isMovies) {
-                MovieService.getMovieDetails(+id).then((response) => {
-                    if (response) {
-                        setMedia(response as Movie);
-                        MovieService.getMovieTrailer(+id).then((videoResponse) => {
-                            if (videoResponse) {
-                                setVideo(videoResponse.results.find((video: Video) => video.type === "Trailer"));
-                                setIsLoading(false);
-                            }
-                        });
-                    }
-                });
-            } else {
-                TvShowService.getTvShowDetails(+id).then((response) => {
-                    if (response) {
-                        setMedia(response as TVShow);
-                        TvShowService.getTvShowTrailer(+id).then((videoResponse) => {
-                            if (videoResponse) {
-                                setVideo(videoResponse.results.find((video: Video) => video.type === "Trailer"));
-                                setIsLoading(false);
-                            }
-                        });
-                        setIsLoading(false);
-                    }
-                });
+
+        const fetchData = async () => {
+            if (!id) {
+                setIsLoading(false);
+                return;
             }
-        }
-    }, []);
+
+            if (isMovies) {
+                try {
+                    const movieDetails = await MovieService.getMovieDetails(+id);
+                    if (movieDetails) {
+                        setMedia(movieDetails);
+                        const movieTrailerResponse = await MovieService.getMovieTrailer(+id);
+                        if (movieTrailerResponse) {
+                            setVideo(movieTrailerResponse.results.find((video: Video) => video.type === "Trailer"));
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error fetching movie details:', error);
+                } finally {
+                    setIsLoading(false);
+                }
+            } else {
+                try {
+                    const tvShowDetails = await TvShowService.getTvShowDetails(+id);
+                    if (tvShowDetails) {
+                        setMedia(tvShowDetails);
+                        const tvShowTrailerResponse = await TvShowService.getTvShowTrailer(+id);
+                        if (tvShowTrailerResponse) {
+                            setVideo(tvShowTrailerResponse.results.find((video: Video) => video.type === "Trailer"));
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error fetching TV show details:', error);
+                } finally {
+                    setIsLoading(false);
+                }
+            }
+        };
+
+        fetchData();
+    }, [id, isMovies]);
 
     return (
         <div className="container my-50">
