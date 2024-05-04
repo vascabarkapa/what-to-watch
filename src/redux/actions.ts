@@ -1,12 +1,12 @@
-export const SET_TEXT = 'SET_TEXT';
-export const SET_TYPE = 'SET_TYPE';
+export enum ActionTypes {
+    SET_TEXT = 'SET_TEXT',
+    SET_TYPE = 'SET_TYPE',
+}
 
-export const setText = (text: string) => ({
-    type: SET_TEXT,
-    payload: text,
+const createAction = <T>(type: ActionTypes, payload: T) => ({
+    type,
+    payload,
 });
 
-export const setType = (text: string) => ({
-    type: SET_TYPE,
-    payload: text,
-});
+export const setText = (text: string) => createAction<string>(ActionTypes.SET_TEXT, text);
+export const setType = (type: string) => createAction<string>(ActionTypes.SET_TYPE, type);

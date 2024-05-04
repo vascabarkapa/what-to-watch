@@ -1,4 +1,4 @@
-import { SET_TEXT, SET_TYPE } from './actions';
+import { ActionTypes } from "./actions";
 
 export interface TextState {
     text: string;
@@ -10,14 +10,26 @@ const initialState: TextState = {
     type: ''
 };
 
-const reducer = (state = initialState, action: any): TextState => {
+interface SetTextAction {
+    type: ActionTypes.SET_TEXT;
+    payload: string;
+}
+
+interface SetTypeAction {
+    type: ActionTypes.SET_TYPE;
+    payload: string;
+}
+
+type TextAction = SetTextAction | SetTypeAction;
+
+const reducer = (state = initialState, action: TextAction): TextState => {
     switch (action.type) {
-        case SET_TEXT:
+        case ActionTypes.SET_TEXT:
             return {
                 ...state,
                 text: action.payload,
             };
-        case SET_TYPE:
+        case ActionTypes.SET_TYPE:
             return {
                 ...state,
                 type: action.payload,
