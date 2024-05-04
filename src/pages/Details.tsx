@@ -98,7 +98,7 @@ const Details = () => {
                                 <Trailer code={video?.key} />
                                 :
                                 media?.backdrop_path &&
-                                <img src={ImageHelper.generateImageLink(media?.backdrop_path)} alt={media?.backdrop_path} loading="eager" />
+                                <img src={ImageHelper.generateImageLink(ImageHelper.backdropImageSizes.w1280, media?.backdrop_path)} alt={media?.backdrop_path} loading="eager" />
                         }
                         <div className="title-wrapper">
                             <h2>{(media as TVShow).name || (media as Movie).title}</h2>
@@ -107,7 +107,7 @@ const Details = () => {
                         <div>{media?.genres?.map(genre => genre.name).join(', ')}</div>
                         <div className="d-flex overview-flex">
                             <div className="poster">
-                                <img src={ImageHelper.generateImageLink(media?.poster_path)} alt={media?.poster_path} loading="eager" />
+                                <img src={ImageHelper.generateImageLink(ImageHelper.posterImageSizes.w500, media?.poster_path)} alt={media?.poster_path} loading="eager" />
                             </div>
                             <div className="overview">{media?.overview}</div>
                         </div>
