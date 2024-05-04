@@ -15,7 +15,4 @@ const put = (endpoint: string, body: any, query: string = ''): Promise<AxiosResp
 const remove = (endpoint: string, query: string = ''): Promise<AxiosResponse> =>
     axiosDelete(`${endpoint}${query ? `?${query}` : ''}`);
 
-const exportFile = (endpoint: string): Promise<AxiosResponse> =>
-    axiosGet(`${endpoint}`, { responseType: 'blob' });
-
-export { get, post, put, remove, exportFile };
+export { get, post, put, remove };
