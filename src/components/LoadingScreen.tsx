@@ -1,4 +1,4 @@
-import w2wLogo from "./../assets/w2w-logo.png";
+import w2wLogo from "./../assets/logo/w2w-logo.png";
 
 const LoadingScreen = ({ onAnimationEnd }: { onAnimationEnd: () => void }) => (
     <div className="loading-screen" onAnimationEnd={onAnimationEnd}>

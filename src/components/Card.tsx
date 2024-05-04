@@ -5,7 +5,7 @@ import ImageHelper from "../utils/ImageHelper";
 import Star from "./Star";
 import Media from "../models/media";
 
-import imageNotAvailable from "./../assets/image_not_available.png";
+import imageNotAvailable from "./../assets/images/image_not_available.png";
 
 interface CardProps {
     media: Movie | TVShow;

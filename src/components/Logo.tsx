@@ -1,4 +1,4 @@
-import w2wLogo from "./../assets/w2w-logo.png";
+import w2wLogo from "./../assets/logo/w2w-logo.png";
 import { useLocation } from "react-router-dom";
 
 const Logo = () => {

@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import w2wLogo from "./../assets/w2w-logo.png";
+import w2wLogo from "./../assets/logo/w2w-logo.png";
 import LeftArrow from "../components/LeftArrow";
 import Star from "../components/Star";
 import { useEffect, useState } from "react";
