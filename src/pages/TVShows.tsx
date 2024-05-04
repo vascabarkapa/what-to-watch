@@ -55,7 +55,7 @@ const TVShows = () => {
         } else {
             fetchTop10();
         }
-    }, [search.text, fetchSearchResults, fetchTop10, top10TvShows.length]);
+    }, [search.text, fetchSearchResults, fetchTop10, top10TvShows.length, top10TvShows]);
 
     const handleInputChange = useCallback((value: string) => {
         dispatch(setText(value));

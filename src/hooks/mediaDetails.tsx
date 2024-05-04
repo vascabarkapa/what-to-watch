@@ -26,7 +26,7 @@ const useMediaDetails = (id: string, isMovies: boolean) => {
         };
 
         fetchData();
-    }, [id, isMovies]);
+    }, [id, isMovies, navigate]);
 
     return { media, video };
 };

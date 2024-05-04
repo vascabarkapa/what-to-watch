@@ -55,7 +55,7 @@ const Movies = () => {
         } else {
             fetchTop10();
         }
-    }, [search.text, fetchSearchResults, fetchTop10, top10Movies.length]);
+    }, [search.text, fetchSearchResults, fetchTop10, top10Movies.length, top10Movies]);
 
     const handleInputChange = useCallback((value: string) => {
         dispatch(setText(value));
