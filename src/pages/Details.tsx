@@ -12,10 +12,14 @@ import Media from "../models/media";
 import Loading from "../components/loading/Loading";
 import Trailer from "../components/Trailer";
 import Video from "../models/video";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/root";
 
 const Details = () => {
     const location = useLocation();
     const navigate = useNavigate();
+
+    const tab = useSelector((state: RootState) => state.text);
 
     const { pathname } = location;
     const isMovies = pathname.includes('movies');
@@ -26,7 +30,7 @@ const Details = () => {
     const [video, setVideo] = useState({} as Video);
 
     function navigateBack() {
-        navigate("/tv-shows");
+        navigate(tab.type);
     }
 
     useEffect(() => {
