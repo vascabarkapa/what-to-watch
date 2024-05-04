@@ -55,7 +55,7 @@ Check out how application looks live! You can test all the functionalities [**he
 
 ## Technologies Used
 
-- React 16.8+
+- React 18.2
 - React Router
 - React Redux
 - Axios
