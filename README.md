@@ -49,6 +49,10 @@ To run the application locally, please follow the steps below:
 - Detailed view of individual movies and TV shows
 - Responsive design for different screen sizes
 
+## Live Demo
+
+Check out how application looks live! You can test all the functionalities [**here**](https://w2w-entertaiment.netlify.app/).
+
 ## Technologies Used
 
 - React 16.8+
