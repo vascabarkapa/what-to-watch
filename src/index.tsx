@@ -4,10 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import LoadingScreen from './components/loading/LoadingScreen';
+import { createStore } from 'redux';
+import rootReducer from './redux/root';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const store = createStore(rootReducer);
 
 const MainApp = () => {
   const [loading, setLoading] = useState(true);
@@ -29,7 +34,9 @@ const MainApp = () => {
       {loading ? (
         <LoadingScreen onAnimationEnd={handleAnimationEnd} />
       ) : (
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       )}
     </React.StrictMode>
   );
