@@ -53,7 +53,7 @@ To run the application locally, please follow the steps below:
 
 - React 16.8+
 - React Router
-- React Context
+- React Redux
 - Axios
 - Typescript
 
@@ -61,9 +61,8 @@ To run the application locally, please follow the steps below:
 
 - ESLint has been configured to ensure code quality and consistency.
 - The application follows a modular and component-based architecture.
-- Some basic tests have been written using React Testing Library to ensure the correctness of key functionalities.
 - The application has been designed to be responsive and compatible with different screen sizes.
-- CSS styling has been implemented without using any CSS frameworks to showcase HTML structure and CSS layout skills.
+- CSS styling has been implemented without using any CSS frameworks.
 
 ## Licence
 
