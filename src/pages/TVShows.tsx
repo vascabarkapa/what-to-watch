@@ -50,7 +50,7 @@ const TVShows = () => {
             const timer = setTimeout(fetchSearchResults, 1000);
             return () => clearTimeout(timer);
         } else if (top10TvShows.length > 0) {
-            setTop10TvShows(top10TvShows);
+            setTvShows(top10TvShows);
             setIsLoading(false);
         } else {
             fetchTop10();
