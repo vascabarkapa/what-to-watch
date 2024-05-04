@@ -16,6 +16,7 @@ const Movies = () => {
     const dispatch = useDispatch();
     const search = useSelector((state: RootState) => state.text);
     const [movies, setMovies] = useState([] as Movie[]);
+    const [top10Movies, setTop10Movies] = useState([] as Movie[]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -27,7 +28,12 @@ const Movies = () => {
 
             return () => clearTimeout(timer);
         } else {
-            fetchTop10();
+            if (top10Movies.length > 0) {
+                setMovies(top10Movies);
+                setIsLoading(false);
+            } else {
+                fetchTop10();
+            }
         }
     }, [search.text]);
 
@@ -44,6 +50,7 @@ const Movies = () => {
         MovieService.getTopRatedMovies().then((response) => {
             if (response) {
                 setMovies(response.results.slice(0, 10));
+                setTop10Movies(response.results.slice(0, 10));
                 setIsLoading(false);
             }
         });

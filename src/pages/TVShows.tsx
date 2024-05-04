@@ -16,6 +16,7 @@ const TVShows = () => {
     const dispatch = useDispatch();
     const search = useSelector((state: RootState) => state.text);
     const [tvShows, setTvShows] = useState([] as TVShow[]);
+    const [top10TvShows, setTop10TvShows] = useState([] as TVShow[]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -27,7 +28,12 @@ const TVShows = () => {
 
             return () => clearTimeout(timer);
         } else {
-            fetchTop10();
+            if (top10TvShows.length > 0) {
+                setTvShows(top10TvShows);
+                setIsLoading(false);
+            } else {
+                fetchTop10();
+            }
         }
     }, [search.text]);
 
@@ -44,6 +50,7 @@ const TVShows = () => {
         TvShowService.getTopRatedTvShows().then((response) => {
             if (response) {
                 setTvShows(response.results.slice(0, 10));
+                setTop10TvShows(response.results.slice(0, 10));
                 setIsLoading(false);
             }
         });
