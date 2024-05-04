@@ -1,4 +1,4 @@
-import { get } from './apiClient';
+import { get } from './axios/apiClient';
 
 const ENDPOINT = `/search`;
 
