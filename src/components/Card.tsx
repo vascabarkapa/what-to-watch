@@ -6,33 +6,30 @@ import Star from "./../assets/icons/Star";
 import Media from "../models/media";
 
 import imageNotAvailable from "./../assets/images/image_not_available.png";
+import { FC } from "react";
 
-interface CardProps {
+type Props = {
     media: Movie | TVShow;
 }
 
-const Card: React.FC<CardProps> = ({ media }) => {
+const Card: FC<Props> = ({ media }) => {
     const navigate = useNavigate();
+    const isMovie = (media: Media): media is Movie => 'title' in media;
 
-    function navigateToDetailsPage(media: Media) {
-        const isMovie = (media as Movie).title !== undefined;
-
-        if (isMovie) {
-            navigate(`/movies/${media?.id}`);
-        } else {
-            navigate(`/tv-shows/${media?.id}`);
-        }
-    }
+    const navigateToDetailsPage = () => {
+        const path = isMovie(media) ? `/movies/${media.id}` : `/tv-shows/${media.id}`;
+        navigate(path);
+    };
 
     return (
-        <div className="card" onClick={() => navigateToDetailsPage(media)}>
-            <img src={media.backdrop_path ? ImageHelper.generateImageLink(ImageHelper.backdropImageSizes.w500, media?.backdrop_path) : imageNotAvailable}
-                alt={media?.backdrop_path} loading="eager" />
+        <div className="card" onClick={navigateToDetailsPage}>
+            <img src={media.backdrop_path ? ImageHelper.generateImageLink(ImageHelper.backdropImageSizes.w500, media.backdrop_path) : imageNotAvailable}
+                alt={isMovie(media) ? media.title : media.name || "No image available"} loading="eager" />
             <div className="title-wrapper">
-                <h2>{(media as Movie).title || (media as TVShow).name}</h2>
-                <span><Star />&nbsp;{media.vote_average.toFixed(2)} ({media.vote_count})</span>
+                <h2>{isMovie(media) ? media.title : media.name}</h2>
+                <span><Star />&nbsp;{media.vote_average.toFixed(2)} ({media.vote_count.toLocaleString()})</span>
             </div>
-            <p className="test">{media.overview}</p>
+            <p>{media.overview}</p>
         </div>
     );
 };
