@@ -1,10 +1,10 @@
-import React from "react";
+import { FC } from "react";
 
 type Props = {
     code: string;
 }
 
-const Trailer: React.FC<Props> = ({ code }) => {
+const Trailer: FC<Props> = ({ code }) => {
     return (
         <iframe
             src={`https://www.youtube.com/embed/${code}`}

@@ -1,7 +1,8 @@
+import { FC } from "react";
 import w2wLogo from "./../assets/logo/w2w-logo.png";
 import { useLocation } from "react-router-dom";
 
-const Logo = () => {
+const Logo: FC = () => {
     const location = useLocation();
 
     if (location.pathname === "/404") {
