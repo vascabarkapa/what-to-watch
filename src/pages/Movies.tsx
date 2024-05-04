@@ -4,10 +4,10 @@ import MovieService from "../services/movieService";
 import Movie from "../models/movie";
 import Logo from "../components/Logo";
 import Tabs from "../components/Tabs";
-import Search from "../components/Search";
+import Search from "../components/search/Search";
 import SearchService from "../services/searchService";
 import Loading from "../components/loading/Loading";
-import SearchNotFound from "../components/SearchNotFound";
+import SearchNotFound from "../components/search/SearchNotFound";
 
 const Movies = () => {
     const [searchQuery, setSearchQuery] = useState('');

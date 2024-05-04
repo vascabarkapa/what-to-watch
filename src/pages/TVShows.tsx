@@ -4,10 +4,10 @@ import TvShowService from "../services/tvShowService";
 import TVShow from "../models/tvShow";
 import Logo from "../components/Logo";
 import Tabs from "../components/Tabs";
-import Search from "../components/Search";
+import Search from "../components/search/Search";
 import SearchService from "../services/searchService";
 import Loading from "../components/loading/Loading";
-import SearchNotFound from "../components/SearchNotFound";
+import SearchNotFound from "../components/search/SearchNotFound";
 
 const TVShows = () => {
     const [searchQuery, setSearchQuery] = useState('');
