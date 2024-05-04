@@ -30,7 +30,7 @@ To run the application locally, please follow the steps below:
 4. Create a `.env` file in the root directory and add your API key obtained from TheMovieDB API:
 
    ```
-   REACT_APP_API_KEY=your_api_key
+   REACT_APP_TMDB_KEY=your_the_movie_db_key
    ```
 
 5. Start the development server:
