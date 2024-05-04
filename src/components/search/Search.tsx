@@ -1,14 +1,15 @@
+import { ChangeEvent, FC } from "react";
 import { useLocation } from "react-router-dom";
 
-type SearchInputProps = {
+type Props = {
     value: string;
     onChange: (value: string) => void;
 }
 
-const Search: React.FC<SearchInputProps> = ({ value, onChange }) => {
+const Search: FC<Props> = ({ value, onChange }) => {
     const location = useLocation();
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         onChange(event.target.value);
     };
 
