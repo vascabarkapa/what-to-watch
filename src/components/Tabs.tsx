@@ -9,7 +9,7 @@ const Tabs: FC = () => {
 
     useEffect(() => {
         dispatch(setType(location.pathname));
-    }, [location.pathname]);
+    }, [location.pathname, dispatch]);
 
     if (location.pathname === "/404") {
         return null;
