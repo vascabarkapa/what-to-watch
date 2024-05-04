@@ -1,15 +1,15 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
-import { setType } from "../redux/actions";
+import { FC, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { NavLink, useLocation } from 'react-router-dom';
+import { setType } from '../redux/actions';
 
-const Tabs = () => {
+const Tabs: FC = () => {
     const location = useLocation();
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(setType(location.pathname));
-    }, [])
+    }, [location.pathname]);
 
     if (location.pathname === "/404") {
         return null;
