@@ -16,14 +16,11 @@ import TVShow from '../models/tvShow';
 const useMediaDetails = (id: string, isMovies: boolean) => {
     const navigate = useNavigate();
 
-    const [isLoading, setIsLoading] = useState(true);
     const [media, setMedia] = useState<Media | null>(null);
     const [video, setVideo] = useState<Video | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            if (!id) return setIsLoading(false);
-
             try {
                 const details = isMovies ? await MovieService.getMovieDetails(+id) : await TvShowService.getTvShowDetails(+id);
                 const trailerResponse = isMovies ? await MovieService.getMovieTrailer(+id) : await TvShowService.getTvShowTrailer(+id);
@@ -33,19 +30,13 @@ const useMediaDetails = (id: string, isMovies: boolean) => {
             } catch (error) {
                 console.error(`Error fetching ${isMovies ? 'movie' : 'TV show'} details:`, error);
                 navigate('/404');
-            } finally {
-                setIsLoading(false);
             }
         };
 
         fetchData();
-
-        return () => {
-            setIsLoading(false);
-        };
     }, [id, isMovies]);
 
-    return { isLoading, media, video };
+    return { media, video };
 };
 
 const Details = () => {
@@ -53,7 +44,7 @@ const Details = () => {
     const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
     const isMovies = location.pathname.includes('movies');
-    const { isLoading, media, video } = useMediaDetails(id || '', isMovies);
+    const { media, video } = useMediaDetails(id || '', isMovies);
 
     return (
         <div className="container my-50">
