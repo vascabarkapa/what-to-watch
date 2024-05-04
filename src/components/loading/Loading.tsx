@@ -1,4 +1,4 @@
-import tvLogo from "./../assets/logo/tv-logo.png";
+import tvLogo from "./../../assets/logo/tv-logo.png";
 
 const Loading = () => {
     return (

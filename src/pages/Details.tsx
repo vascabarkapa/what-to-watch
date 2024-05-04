@@ -9,7 +9,7 @@ import ImageHelper from "../utils/ImageHelper";
 import TVShow from "../models/tvShow";
 import Movie from "../models/movie";
 import Media from "../models/media";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import Trailer from "../components/Trailer";
 import Video from "../models/video";
 

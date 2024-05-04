@@ -6,7 +6,7 @@ import Logo from "../components/Logo";
 import Tabs from "../components/Tabs";
 import Search from "../components/Search";
 import SearchService from "../services/searchService";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import SearchNotFound from "../components/SearchNotFound";
 
 const TVShows = () => {
