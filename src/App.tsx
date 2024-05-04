@@ -9,12 +9,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/tv-shows" Component={TVShows} />
-        <Route path="/tv-shows/:id" Component={Details} />
-        <Route path="/movies" Component={Movies} />
-        <Route path="/movies/:id" Component={Details} />
-        <Route path="/404" Component={NotFound} />
         <Route path="/" element={<Navigate to="/tv-shows" />} />
+        <Route path="/tv-shows" element={<TVShows />} />
+        <Route path="/tv-shows/:id" element={<Details />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:id" element={<Details />} />
+        <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
     </BrowserRouter>
