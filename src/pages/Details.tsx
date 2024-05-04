@@ -1,118 +1,90 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import w2wLogo from "./../assets/logo/w2w-logo.png";
-import LeftArrow from "../assets/icons/LeftArrow";
-import Star from "../assets/icons/Star";
-import { useEffect, useState } from "react";
-import MovieService from "../services/movieService";
-import TvShowService from "../services/tvShowService";
-import ImageHelper from "../utils/ImageHelper";
-import TVShow from "../models/tvShow";
-import Movie from "../models/movie";
-import Media from "../models/media";
-import Loading from "../components/loading/Loading";
-import Trailer from "../components/Trailer";
-import Video from "../models/video";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/root";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/root';
+import MovieService from '../services/movieService';
+import TvShowService from '../services/tvShowService';
+import ImageHelper from '../utils/ImageHelper';
+import Media from '../models/media';
+import Video from '../models/video';
+import Loading from '../components/loading/Loading';
+import Trailer from '../components/Trailer';
+import LeftArrow from '../assets/icons/LeftArrow';
+import Star from '../assets/icons/Star';
+import w2wLogo from '../assets/logo/w2w-logo.png';
+import Movie from '../models/movie';
+import TVShow from '../models/tvShow';
 
-const Details = () => {
-    const location = useLocation();
+const useMediaDetails = (id: string, isMovies: boolean) => {
     const navigate = useNavigate();
 
-    const tab = useSelector((state: RootState) => state.text);
-
-    const { pathname } = location;
-    const isMovies = pathname.includes('movies');
-    const { id } = useParams<{ id: string }>();
-
-    const [isLoading, setIsLoading] = useState(false);
-    const [media, setMedia] = useState({} as Media);
-    const [video, setVideo] = useState({} as Video);
-
-    function navigateBack() {
-        navigate(tab.type);
-    }
+    const [isLoading, setIsLoading] = useState(true);
+    const [media, setMedia] = useState<Media | null>(null);
+    const [video, setVideo] = useState<Video | null>(null);
 
     useEffect(() => {
-        setIsLoading(true);
-
         const fetchData = async () => {
-            if (!id) {
-                setIsLoading(false);
-                return;
-            }
+            if (!id) return setIsLoading(false);
 
-            if (isMovies) {
-                try {
-                    const movieDetails = await MovieService.getMovieDetails(+id);
-                    if (movieDetails) {
-                        setMedia(movieDetails);
-                        const movieTrailerResponse = await MovieService.getMovieTrailer(+id);
-                        if (movieTrailerResponse) {
-                            setVideo(movieTrailerResponse.results.find((video: Video) => video.type === "Trailer"));
-                        }
-                    }
-                } catch (error) {
-                    console.error('Error fetching movie details:', error);
-                    navigate('/404');
-                } finally {
-                    setIsLoading(false);
-                }
-            } else {
-                try {
-                    const tvShowDetails = await TvShowService.getTvShowDetails(+id);
-                    if (tvShowDetails) {
-                        setMedia(tvShowDetails);
-                        const tvShowTrailerResponse = await TvShowService.getTvShowTrailer(+id);
-                        if (tvShowTrailerResponse) {
-                            setVideo(tvShowTrailerResponse.results.find((video: Video) => video.type === "Trailer"));
-                        }
-                    }
-                } catch (error) {
-                    console.error('Error fetching TV show details:', error);
-                    navigate('/404');
-                } finally {
-                    setIsLoading(false);
-                }
+            try {
+                const details = isMovies ? await MovieService.getMovieDetails(+id) : await TvShowService.getTvShowDetails(+id);
+                const trailerResponse = isMovies ? await MovieService.getMovieTrailer(+id) : await TvShowService.getTvShowTrailer(+id);
+
+                setMedia(details);
+                setVideo(trailerResponse.results.find((video: Video) => video.type === "Trailer"));
+            } catch (error) {
+                console.error(`Error fetching ${isMovies ? 'movie' : 'TV show'} details:`, error);
+                navigate('/404');
+            } finally {
+                setIsLoading(false);
             }
         };
 
         fetchData();
+
+        return () => {
+            setIsLoading(false); // Cleanup to avoid setting state after unmount
+        };
     }, [id, isMovies]);
+
+    return { isLoading, media, video };
+};
+
+const Details = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { id } = useParams<{ id: string }>();
+    const isMovies = location.pathname.includes('movies');
+    const { isLoading, media, video } = useMediaDetails(id || '', isMovies);
 
     return (
         <div className="container my-50">
             <div className="back-container">
-                <button className="back" onClick={() => navigateBack()}>
+                <button className="back" onClick={() => navigate(-1)}>
                     <LeftArrow />&nbsp;&nbsp;Back
                 </button>
                 <img className="back-img" src={w2wLogo} alt="W2W Logo" />
             </div>
-            {
-                isLoading ?
-                    <Loading />
-                    :
-                    <div className="details">
-                        {
-                            video ?
-                                <Trailer code={video?.key} />
-                                :
-                                media?.backdrop_path &&
-                                <img src={ImageHelper.generateImageLink(ImageHelper.backdropImageSizes.w1280, media?.backdrop_path)} alt={media?.backdrop_path} loading="eager" />
-                        }
-                        <div className="title-wrapper">
-                            <h2>{(media as TVShow).name || (media as Movie).title}</h2>
-                            <span className="d-flex align-items-center"><Star />&nbsp;{media?.vote_average && media.vote_average.toFixed(2)} ({media?.vote_count})</span>
-                        </div>
-                        <div>{media?.genres?.map(genre => genre.name).join(', ')}</div>
-                        <div className="d-flex overview-flex">
-                            <div className="poster">
-                                <img src={ImageHelper.generateImageLink(ImageHelper.posterImageSizes.w500, media?.poster_path)} alt={media?.poster_path} loading="eager" />
-                            </div>
-                            <div className="overview">{media?.overview}</div>
-                        </div>
+            {!media ? <Loading /> : (
+                <div className="details">
+                    {video ? (
+                        <Trailer code={video?.key} />
+                    ) : (
+                        media?.backdrop_path && <img src={ImageHelper.generateImageLink(ImageHelper.backdropImageSizes.w1280, media.backdrop_path)} alt="Backdrop" loading="eager" />
+                    )}
+                    <div className="title-wrapper">
+                        <h2>{(media as TVShow)?.name || (media as Movie)?.title}</h2>
+                        <span className="d-flex align-items-center"><Star />&nbsp;{media?.vote_average?.toFixed(2)} ({media?.vote_count})</span>
                     </div>
-            }
+                    <div>{media?.genres?.map(genre => genre.name).join(', ')}</div>
+                    <div className="d-flex overview-flex">
+                        <div className="poster">
+                            <img src={ImageHelper.generateImageLink(ImageHelper.posterImageSizes.w500, media?.poster_path || '')} alt="Poster" loading="eager" />
+                        </div>
+                        <div className="overview">{media?.overview}</div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
