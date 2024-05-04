@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import searchTextReducer from './reducer';
+import textReducer from './reducer';
 
 const rootReducer = combineReducers({
-    text: searchTextReducer,
+    text: textReducer,
 });
 
 export default rootReducer;

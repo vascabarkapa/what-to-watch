@@ -1,6 +1,6 @@
-export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
+export const SET_TEXT = 'SET_TEXT';
 
-export const setSearchText = (text: string) => ({
-    type: SET_SEARCH_TEXT,
+export const setText = (text: string) => ({
+    type: SET_TEXT,
     payload: text,
 });

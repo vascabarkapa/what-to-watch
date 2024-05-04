@@ -1,19 +1,19 @@
-import { SET_SEARCH_TEXT } from './actions';
+import { SET_TEXT } from './actions';
 
 export interface TextState {
-    searchText: string;
+    text: string;
 }
 
 const initialState: TextState = {
-    searchText: '',
+    text: '',
 };
 
 const reducer = (state = initialState, action: any): TextState => {
     switch (action.type) {
-        case SET_SEARCH_TEXT:
+        case SET_TEXT:
             return {
                 ...state,
-                searchText: action.payload,
+                text: action.payload,
             };
         default:
             return state;
