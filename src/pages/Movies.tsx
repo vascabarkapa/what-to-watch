@@ -8,15 +8,19 @@ import Search from "../components/search/Search";
 import SearchService from "../services/searchService";
 import Loading from "../components/loading/Loading";
 import SearchNotFound from "../components/search/SearchNotFound";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../redux/root";
+import { setText } from "../redux/actions";
 
 const Movies = () => {
-    const [searchQuery, setSearchQuery] = useState('');
+    const dispatch = useDispatch();
+    const search = useSelector((state: RootState) => state.text);
     const [movies, setMovies] = useState([] as Movie[]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
-        if (searchQuery.length >= 3) {
+        if (search.text.length >= 3) {
             const timer = setTimeout(() => {
                 fetchSearchResults();
             }, 1000);
@@ -25,10 +29,10 @@ const Movies = () => {
         } else {
             fetchTop10();
         }
-    }, [searchQuery]);
+    }, [search.text]);
 
     const fetchSearchResults = async () => {
-        SearchService.searchMoviesbyTitle(searchQuery).then((response) => {
+        SearchService.searchMoviesbyTitle(search.text).then((response) => {
             if (response) {
                 setMovies(response.results);
                 setIsLoading(false);
@@ -46,14 +50,14 @@ const Movies = () => {
     };
 
     const handleInputChange = (value: string) => {
-        setSearchQuery(value);
+        dispatch(setText(value));
     };
 
     return (
         <div className='container'>
             <Logo />
             <Tabs />
-            <Search value={searchQuery} onChange={handleInputChange} />
+            <Search value={search.text} onChange={handleInputChange} />
             {
                 isLoading ?
                     <Loading />

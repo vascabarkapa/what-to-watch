@@ -8,15 +8,19 @@ import Search from "../components/search/Search";
 import SearchService from "../services/searchService";
 import Loading from "../components/loading/Loading";
 import SearchNotFound from "../components/search/SearchNotFound";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../redux/root";
+import { setText } from "../redux/actions";
 
 const TVShows = () => {
-    const [searchQuery, setSearchQuery] = useState('');
+    const dispatch = useDispatch();
+    const search = useSelector((state: RootState) => state.text);
     const [tvShows, setTvShows] = useState([] as TVShow[]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
-        if (searchQuery.length >= 3) {
+        if (search.text.length >= 3) {
             const timer = setTimeout(() => {
                 fetchSearchResults();
             }, 1000);
@@ -25,10 +29,10 @@ const TVShows = () => {
         } else {
             fetchTop10();
         }
-    }, [searchQuery]);
+    }, [search.text]);
 
     const fetchSearchResults = async () => {
-        SearchService.searchTvShowsbyTitle(searchQuery).then((response) => {
+        SearchService.searchTvShowsbyTitle(search.text).then((response) => {
             if (response) {
                 setTvShows(response.results);
                 setIsLoading(false);
@@ -46,14 +50,14 @@ const TVShows = () => {
     };
 
     const handleInputChange = (value: string) => {
-        setSearchQuery(value);
+        dispatch(setText(value));
     };
 
     return (
         <div className='container'>
             <Logo />
             <Tabs />
-            <Search value={searchQuery} onChange={handleInputChange} />
+            <Search value={search.text} onChange={handleInputChange} />
             {
                 isLoading ?
                     <Loading />
