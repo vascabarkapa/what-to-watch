@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/root';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import ImageHelper from '../utils/ImageHelper';
 import Loading from '../components/loading/Loading';
@@ -13,14 +15,20 @@ import useMediaDetails from '../hooks/mediaDetails';
 const Details: FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
+
     const { id } = useParams<{ id: string }>();
     const isMovies = location.pathname.includes('movies');
     const { media, video } = useMediaDetails(id || '', isMovies);
+    const tab = useSelector((state: RootState) => state.text);
+
+    const navigateBack = () => {
+        navigate(tab.type || '/');
+    }
 
     return (
         <div className="container my-50">
             <div className="back-container">
-                <button className="back" onClick={() => navigate(-1)}>
+                <button className="back" onClick={navigateBack}>
                     <LeftArrow />&nbsp;&nbsp;Back
                 </button>
                 <img className="back-img" src={w2wLogo} alt="W2W Logo" />

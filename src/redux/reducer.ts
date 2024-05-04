@@ -2,10 +2,12 @@ import { ActionTypes } from "./actions";
 
 export interface TextState {
     text: string;
+    type: string;
 }
 
 const initialState: TextState = {
-    text: ''
+    text: '',
+    type: ''
 };
 
 interface SetTextAction {
@@ -13,7 +15,12 @@ interface SetTextAction {
     payload: string;
 }
 
-type TextAction = SetTextAction;
+interface SetTypeAction {
+    type: ActionTypes.SET_TYPE;
+    payload: string;
+}
+
+type TextAction = SetTextAction | SetTypeAction;
 
 const reducer = (state = initialState, action: TextAction): TextState => {
     switch (action.type) {
@@ -21,6 +28,11 @@ const reducer = (state = initialState, action: TextAction): TextState => {
             return {
                 ...state,
                 text: action.payload,
+            };
+        case ActionTypes.SET_TYPE:
+            return {
+                ...state,
+                type: action.payload,
             };
         default:
             return state;
