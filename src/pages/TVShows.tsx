@@ -17,7 +17,7 @@ const TVShows = () => {
     const search = useSelector((state: RootState) => state.text);
     const [tvShows, setTvShows] = useState([] as TVShow[]);
     const [top10TvShows, setTop10TvShows] = useState([] as TVShow[]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         setIsLoading(true);

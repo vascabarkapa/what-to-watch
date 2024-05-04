@@ -17,7 +17,7 @@ const Movies = () => {
     const search = useSelector((state: RootState) => state.text);
     const [movies, setMovies] = useState([] as Movie[]);
     const [top10Movies, setTop10Movies] = useState([] as Movie[]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         setIsLoading(true);
