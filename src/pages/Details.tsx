@@ -1,7 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import w2wLogo from "./../assets/logo/w2w-logo.png";
-import LeftArrow from "../components/LeftArrow";
-import Star from "../components/Star";
+import LeftArrow from "../assets/icons/LeftArrow";
+import Star from "../assets/icons/Star";
 import { useEffect, useState } from "react";
 import MovieService from "../services/movieService";
 import TvShowService from "../services/tvShowService";

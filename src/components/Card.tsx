@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Movie from "../models/movie";
 import TVShow from "../models/tvShow";
 import ImageHelper from "../utils/ImageHelper";
-import Star from "./Star";
+import Star from "./../assets/icons/Star";
 import Media from "../models/media";
 
 import imageNotAvailable from "./../assets/images/image_not_available.png";
