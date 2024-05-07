@@ -11,6 +11,7 @@ import Tabs from "../components/Tabs";
 import Search from "../components/search/Search";
 import Loading from "../components/loading/Loading";
 import SearchNotFound from "../components/search/SearchNotFound";
+import ReactPaginate from "react-paginate";
 
 const Movies = () => {
     const dispatch = useDispatch();
@@ -70,9 +71,25 @@ const Movies = () => {
                 <Loading />
             ) : (
                 movies.length > 0 ? (
-                    <div className="card-container">
-                        {movies.map(movie => <Card key={movie.id} media={movie} />)}
-                    </div>
+                    <>
+                        <div className="card-container">
+                            {movies.map(movie => <Card key={movie.id} media={movie} />)}
+                        </div>
+                        <div className="pagination-container">
+                                <ReactPaginate
+                                    breakLabel="..."
+                                    nextLabel=">>"
+                                    onPageChange={() => console.log('aa')}
+                                    pageRangeDisplayed={5}
+                                    pageCount={5}
+                                    previousLabel="<<"
+                                    containerClassName={"pagination"}
+                                    pageClassName={"page-item"}
+                                    activeClassName={"active"}
+                                    renderOnZeroPageCount={null}
+                                />
+                            </div>
+                    </>
                 ) : (
                     <SearchNotFound media={'Movies'} />
                 )
