@@ -11,14 +11,15 @@ import Tabs from "../components/Tabs";
 import Search from "../components/search/Search";
 import Loading from "../components/loading/Loading";
 import SearchNotFound from "../components/search/SearchNotFound";
-import ReactPaginate from "react-paginate";
+import Pagination from "../components/Pagination";
+import TVShowResponse from "../models/response/tvShowResponse";
 
 const TVShows = () => {
     const dispatch = useDispatch();
     const search = useSelector((state: RootState) => state.text);
     const page = useSelector((state: RootState) => state.text);
-    const [tvShows, setTvShows] = useState<any>({});
-    const [top10TvShows, setTop10TvShows] = useState<any>({});
+    const [tvShows, setTvShows] = useState({} as TVShowResponse);
+    const [top10TvShows, setTop10TvShows] = useState({} as TVShowResponse);
     const [isLoading, setIsLoading] = useState(true);
 
     const fetchSearchResults = useCallback(async () => {
@@ -92,20 +93,7 @@ const TVShows = () => {
                         </div>
                         {
                             search.text.length >= 3 && tvShows.total_pages > 1 &&
-                            <div className="pagination-container">
-                                <ReactPaginate
-                                    forcePage={page.page - 1}
-                                    breakLabel="..."
-                                    nextLabel={null}
-                                    onPageChange={handlePageClick}
-                                    pageRangeDisplayed={5}
-                                    pageCount={tvShows.total_pages}
-                                    previousLabel={null}
-                                    containerClassName={"pagination"}
-                                    pageClassName={"page-item"}
-                                    activeClassName={"active"}
-                                />
-                            </div>
+                            <Pagination forcePage={page.page - 1} pageCount={tvShows.total_pages} handlePageClick={handlePageClick} />
                         }
                     </>
                 ) : (

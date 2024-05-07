@@ -11,14 +11,15 @@ import Tabs from "../components/Tabs";
 import Search from "../components/search/Search";
 import Loading from "../components/loading/Loading";
 import SearchNotFound from "../components/search/SearchNotFound";
-import ReactPaginate from "react-paginate";
+import Pagination from "../components/Pagination";
+import MovieResponse from "../models/response/movieResponse";
 
 const Movies = () => {
     const dispatch = useDispatch();
     const search = useSelector((state: RootState) => state.text);
     const page = useSelector((state: RootState) => state.text);
-    const [movies, setMovies] = useState<any>({});
-    const [top10Movies, setTop10Movies] = useState<any>({});
+    const [movies, setMovies] = useState({} as MovieResponse);
+    const [top10Movies, setTop10Movies] = useState({} as MovieResponse);
     const [isLoading, setIsLoading] = useState(true);
 
     const fetchSearchResults = useCallback(async () => {
@@ -92,20 +93,7 @@ const Movies = () => {
                         </div>
                         {
                             search.text.length >= 3 && movies.total_pages > 1 &&
-                            <div className="pagination-container">
-                                <ReactPaginate
-                                    forcePage={page.page - 1}
-                                    breakLabel="..."
-                                    nextLabel={null}
-                                    onPageChange={handlePageClick}
-                                    pageRangeDisplayed={5}
-                                    pageCount={movies.total_pages}
-                                    previousLabel={null}
-                                    containerClassName={"pagination"}
-                                    pageClassName={"page-item"}
-                                    activeClassName={"active"}
-                                />
-                            </div>
+                            <Pagination forcePage={page.page - 1} pageCount={movies.total_pages} handlePageClick={handlePageClick} />
                         }
                     </>
                 ) : (
