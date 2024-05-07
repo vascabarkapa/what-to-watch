@@ -16,8 +16,7 @@ import TVShowResponse from "../models/response/tvShowResponse";
 
 const TVShows = () => {
     const dispatch = useDispatch();
-    const search = useSelector((state: RootState) => state.text);
-    const page = useSelector((state: RootState) => state.text);
+    const redux = useSelector((state: RootState) => state.text);
     const [tvShows, setTvShows] = useState({} as TVShowResponse);
     const [top10TvShows, setTop10TvShows] = useState({} as TVShowResponse);
     const [isLoading, setIsLoading] = useState(true);
@@ -25,14 +24,14 @@ const TVShows = () => {
     const fetchSearchResults = useCallback(async () => {
         setIsLoading(true);
         try {
-            const response = await SearchService.searchTvShowsbyTitle(search.text, page.page);
+            const response = await SearchService.searchTvShowsbyTitle(redux.text, redux.page);
             setTvShows(response);
         } catch (error) {
             console.error('Error fetching search results:', error);
         } finally {
             setIsLoading(false);
         }
-    }, [search.text]);
+    }, [redux.text]);
 
     const fetchTop10 = useCallback(async () => {
         setIsLoading(true);
@@ -50,7 +49,7 @@ const TVShows = () => {
     }, []);
 
     useEffect(() => {
-        if (search.text.length >= 3) {
+        if (redux.text.length >= 3) {
             const timer = setTimeout(fetchSearchResults, 1000);
             return () => clearTimeout(timer);
         } else if (top10TvShows.results && top10TvShows.results.length > 0) {
@@ -59,7 +58,7 @@ const TVShows = () => {
         } else {
             fetchTop10();
         }
-    }, [search.text, fetchSearchResults, fetchTop10, top10TvShows]);
+    }, [redux.text, fetchSearchResults, fetchTop10, top10TvShows]);
 
     const handleInputChange = useCallback((value: string) => {
         dispatch(setText(value));
@@ -68,7 +67,7 @@ const TVShows = () => {
     const handlePageClick = async (event: any) => {
         setIsLoading(true);
         try {
-            const response = await SearchService.searchTvShowsbyTitle(search.text, event.selected + 1);
+            const response = await SearchService.searchTvShowsbyTitle(redux.text, event.selected + 1);
             setTvShows(response);
             dispatch(setPage(event.selected + 1));
         } catch (error) {
@@ -82,7 +81,7 @@ const TVShows = () => {
         <div className='container'>
             <Logo />
             <Tabs />
-            <Search value={search.text} onChange={handleInputChange} />
+            <Search value={redux.text} onChange={handleInputChange} />
             {isLoading ? (
                 <Loading />
             ) : (
@@ -92,8 +91,8 @@ const TVShows = () => {
                             {tvShows.results.map((tvShow: TVShow) => <Card key={tvShow.id} media={tvShow} />)}
                         </div>
                         {
-                            search.text.length >= 3 && tvShows.total_pages > 1 &&
-                            <Pagination forcePage={page.page - 1} pageCount={tvShows.total_pages} handlePageClick={handlePageClick} />
+                            redux.text.length >= 3 && tvShows.total_pages > 1 &&
+                            <Pagination forcePage={redux.page - 1} pageCount={tvShows.total_pages} handlePageClick={handlePageClick} />
                         }
                     </>
                 ) : (

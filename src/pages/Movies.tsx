@@ -16,8 +16,7 @@ import MovieResponse from "../models/response/movieResponse";
 
 const Movies = () => {
     const dispatch = useDispatch();
-    const search = useSelector((state: RootState) => state.text);
-    const page = useSelector((state: RootState) => state.text);
+    const redux = useSelector((state: RootState) => state.text);
     const [movies, setMovies] = useState({} as MovieResponse);
     const [top10Movies, setTop10Movies] = useState({} as MovieResponse);
     const [isLoading, setIsLoading] = useState(true);
@@ -25,14 +24,14 @@ const Movies = () => {
     const fetchSearchResults = useCallback(async () => {
         setIsLoading(true);
         try {
-            const response = await SearchService.searchMoviesbyTitle(search.text, page.page);
+            const response = await SearchService.searchMoviesbyTitle(redux.text, redux.page);
             setMovies(response);
         } catch (error) {
             console.error('Error fetching search results:', error);
         } finally {
             setIsLoading(false);
         }
-    }, [search.text]);
+    }, [redux.text]);
 
     const fetchTop10 = useCallback(async () => {
         setIsLoading(true);
@@ -50,7 +49,7 @@ const Movies = () => {
     }, []);
 
     useEffect(() => {
-        if (search.text.length >= 3) {
+        if (redux.text.length >= 3) {
             const timer = setTimeout(fetchSearchResults, 1000);
             return () => clearTimeout(timer);
         } else if (top10Movies.results && top10Movies.results.length > 0) {
@@ -59,7 +58,7 @@ const Movies = () => {
         } else {
             fetchTop10();
         }
-    }, [search.text, fetchSearchResults, fetchTop10, top10Movies]);
+    }, [redux.text, fetchSearchResults, fetchTop10, top10Movies]);
 
     const handleInputChange = useCallback((value: string) => {
         dispatch(setText(value));
@@ -68,7 +67,7 @@ const Movies = () => {
     const handlePageClick = async (event: any) => {
         setIsLoading(true);
         try {
-            const response = await SearchService.searchMoviesbyTitle(search.text, event.selected + 1);
+            const response = await SearchService.searchMoviesbyTitle(redux.text, event.selected + 1);
             setMovies(response);
             dispatch(setPage(event.selected + 1));
         } catch (error) {
@@ -82,7 +81,7 @@ const Movies = () => {
         <div className='container'>
             <Logo />
             <Tabs />
-            <Search value={search.text} onChange={handleInputChange} />
+            <Search value={redux.text} onChange={handleInputChange} />
             {isLoading ? (
                 <Loading />
             ) : (
@@ -92,8 +91,8 @@ const Movies = () => {
                             {movies.results.map((movie: Movie) => <Card key={movie.id} media={movie} />)}
                         </div>
                         {
-                            search.text.length >= 3 && movies.total_pages > 1 &&
-                            <Pagination forcePage={page.page - 1} pageCount={movies.total_pages} handlePageClick={handlePageClick} />
+                            redux.text.length >= 3 && movies.total_pages > 1 &&
+                            <Pagination forcePage={redux.page - 1} pageCount={movies.total_pages} handlePageClick={handlePageClick} />
                         }
                     </>
                 ) : (
