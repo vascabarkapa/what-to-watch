@@ -450,14 +450,14 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .active {
-    background-color: #4EA7DD;
-    border-radius: 10px;
+    background-color: #4EA7DD !important;
+    border-radius: 5px !important;
 }
 
 .active a {
-    background-color: transparent;
-    font-weight: 500;
-    color: rgb(252, 252, 252);
+    background-color: transparent !important;
+    font-weight: 500 !important;
+    color: rgb(252, 252, 252) !important;
 }
 
 .page-item {
@@ -474,7 +474,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .page-item:hover {
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #CCE2FF;
 }
 
