@@ -49,7 +49,13 @@ const Details: FC = () => {
                         <div className="poster">
                             <img src={ImageHelper.generateImageLink(ImageHelper.posterImageSizes.w500, media?.poster_path || '')} alt="Poster" loading="eager" />
                         </div>
-                        <div className="overview">{media?.overview}</div>
+                        <div className="overview">
+                            {media?.overview}
+                            <div className="info"><span>Status:</span> {media?.status}</div>
+                            <div className="info"><span>Production Companies:</span> {media?.production_companies?.map(production_company => production_company.name).join(', ')}</div>
+                            <div className="info"><span>Spoken Languages:</span> {media?.spoken_languages?.map(spoken_language => spoken_language.english_name).join(', ')}</div>
+                            <div className="more-information">Click <a href={media?.homepage}>here</a> for more details</div>
+                        </div>
                     </div>
                 </div>
             )}
