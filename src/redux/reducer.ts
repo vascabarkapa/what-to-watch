@@ -1,15 +1,20 @@
 import { ActionTypes } from "./actions";
+import Genre from "../models/genre";
 
 export interface TextState {
     text: string;
     type: string;
     page: number;
+    movieGenres: Genre[];
+    tvShowGenres: Genre[];
 }
 
 const initialState: TextState = {
     text: '',
     type: '',
-    page: 1
+    page: 1,
+    movieGenres: [],
+    tvShowGenres: [],
 };
 
 interface SetTextAction {
@@ -27,7 +32,17 @@ interface SetPageAction {
     payload: number;
 }
 
-type TextAction = SetTextAction | SetTypeAction | SetPageAction;
+interface SetMovieGenresAction {
+    type: ActionTypes.SET_MOVIE_GENRES;
+    payload: Genre[];
+}
+
+interface SetTVShowGenresAction {
+    type: ActionTypes.SET_TV_SHOW_GENRES;
+    payload: Genre[];
+}
+
+type TextAction = SetTextAction | SetTypeAction | SetPageAction | SetMovieGenresAction | SetTVShowGenresAction;
 
 const reducer = (state = initialState, action: TextAction): TextState => {
     switch (action.type) {
@@ -45,6 +60,16 @@ const reducer = (state = initialState, action: TextAction): TextState => {
             return {
                 ...state,
                 page: action.payload,
+            };
+        case ActionTypes.SET_MOVIE_GENRES:
+            return {
+                ...state,
+                movieGenres: action.payload,
+            };
+        case ActionTypes.SET_TV_SHOW_GENRES:
+            return {
+                ...state,
+                tvShowGenres: action.payload,
             };
         default:
             return state;
