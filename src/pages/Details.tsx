@@ -38,7 +38,7 @@ const Details: FC = () => {
                     {video ? (
                         <Trailer code={video?.key} />
                     ) : (
-                        media?.backdrop_path && <img src={ImageHelper.generateImageLink(ImageHelper.backdropImageSizes.w1280, media.backdrop_path)} alt="Backdrop" loading="eager" />
+                        media?.backdrop_path && <img src={ImageHelper.generateImageLink(ImageHelper.backdropImageSizes.w1280, media.backdrop_path)} alt="Cover image" loading="eager" />
                     )}
                     <div className="title-wrapper">
                         <h2>{(media as TVShow)?.name || (media as Movie)?.title}</h2>
@@ -46,15 +46,51 @@ const Details: FC = () => {
                     </div>
                     <div>{media?.genres?.map(genre => genre.name).join(', ')}</div>
                     <div className="d-flex overview-flex">
-                        <div className="poster">
-                            <img src={ImageHelper.generateImageLink(ImageHelper.posterImageSizes.w500, media?.poster_path || '')} alt="Poster" loading="eager" />
-                        </div>
+                        {media?.poster_path && (
+                            <>
+                                <div className="poster">
+                                    <img src={ImageHelper.generateImageLink(ImageHelper.posterImageSizes.w500, media?.poster_path || '')} alt="Poster image" loading="eager" />
+                                </div>
+                            </>
+                        )}
                         <div className="overview">
+                            {media?.tagline && <div className="tagline">{media?.tagline}</div>}
                             {media?.overview}
-                            <div className="info"><span>Status:</span> {media?.status}</div>
-                            <div className="info"><span>Production Companies:</span> {media?.production_companies?.map(production_company => production_company.name).join(', ')}</div>
-                            <div className="info"><span>Spoken Languages:</span> {media?.spoken_languages?.map(spoken_language => spoken_language.english_name).join(', ')}</div>
-                            <div className="more-information">Click <a href={media?.homepage}>here</a> for more details</div>
+                            <div className="info">
+                                {media?.adult && (
+                                    <>
+                                        <span>Adult:</span> +18
+                                    </>
+                                )}
+                            </div>
+                            <div className="info">
+                                {media?.status && (
+                                    <>
+                                        <span>Status:</span> {media?.status}
+                                    </>
+                                )}
+                            </div>
+                            <div className="info">
+                                {media?.production_companies && media?.production_companies.length > 0 && (
+                                    <>
+                                        <span>Production Companies:</span> {media?.production_companies?.map(production_company => production_company.name + " (" + production_company.origin_country + ")").join(', ')}
+                                    </>
+                                )}
+                            </div>
+                            <div className="info">
+                                {media?.spoken_languages && media?.spoken_languages.length > 0 && (
+                                    <>
+                                        <span>Spoken Languages:</span> {media?.spoken_languages?.map(spoken_language => (spoken_language.english_name + " (" + spoken_language.name + ")")).join(', ')}
+                                    </>
+                                )}
+                            </div>
+                            <div className="more-information">
+                                {media?.homepage && (
+                                    <>
+                                        Click <a href={media?.homepage}>here</a> for more details
+                                    </>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
