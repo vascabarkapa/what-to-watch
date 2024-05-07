@@ -2,13 +2,13 @@ import { get } from './axios/apiClient';
 
 const ENDPOINT = `/search`;
 
-const searchMoviesbyTitle = async (title: string) => {
-    const response = await get(`${ENDPOINT}/movie`, `query=${title}&page=1`);
+const searchMoviesbyTitle = async (title: string, page: number = 1) => {
+    const response = await get(`${ENDPOINT}/movie`, `query=${title}&page=${page}`);
     return response.data;
 }
 
-const searchTvShowsbyTitle = async (title: string) => {
-    const response = await get(`${ENDPOINT}/tv`, `query=${title}&page=1`);
+const searchTvShowsbyTitle = async (title: string, page: number = 1) => {
+    const response = await get(`${ENDPOINT}/tv`, `query=${title}&page=${page}`);
     return response.data;
 }
 
