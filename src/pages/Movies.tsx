@@ -91,7 +91,7 @@ const Movies = () => {
                             {movies.results.map((movie: Movie) => <Card key={movie.id} media={movie} />)}
                         </div>
                         {
-                            search.text.length >= 3 &&
+                            search.text.length >= 3 && movies.total_pages > 1 &&
                             <div className="pagination-container">
                                 <ReactPaginate
                                     forcePage={page.page - 1}

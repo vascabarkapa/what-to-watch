@@ -91,7 +91,7 @@ const TVShows = () => {
                             {tvShows.results.map((tvShow: TVShow) => <Card key={tvShow.id} media={tvShow} />)}
                         </div>
                         {
-                            search.text.length >= 3 &&
+                            search.text.length >= 3 && tvShows.total_pages > 1 &&
                             <div className="pagination-container">
                                 <ReactPaginate
                                     forcePage={page.page - 1}
