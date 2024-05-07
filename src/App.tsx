@@ -4,8 +4,33 @@ import TVShows from './pages/TVShows';
 import Movies from './pages/Movies';
 import NotFound from './pages/NotFound';
 import Details from './pages/Details';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import GenreService from './services/genreService';
+import { setMovieGenres, setTVShowGenres } from './redux/actions';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const [movieResponse, tvShowResponse] = await Promise.all([
+          GenreService.getGenresByType('movie'),
+          GenreService.getGenresByType('tv')
+        ]);
+
+        dispatch(setMovieGenres(movieResponse.genres));
+        dispatch(setTVShowGenres(tvShowResponse.genres));
+      } catch (error) {
+        console.error('Failed to fetch genres:', error);
+      }
+    };
+
+    fetchGenres();
+  }, [dispatch]);
+
+
   return (
     <BrowserRouter>
       <Routes>
