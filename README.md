@@ -43,11 +43,11 @@ To run the application locally, please follow the steps below:
 
 ## Features
 
-- Display top 10 rated movies and TV shows
-- Search functionality for movies and TV shows
-- Live search with debounce functionality
-- Detailed view of individual movies and TV shows
-- Responsive design for different screen sizes
+- Display top 10 rated movies and TV shows.
+- Search functionality for movies and TV shows.
+- Live search with debounce functionality.
+- Detailed view of individual movies and TV shows.
+- Responsive design for different screen sizes.
 
 ## Live Demo
 
@@ -55,7 +55,7 @@ Check out how application looks live! You can test all the functionalities [**he
 
 ## Technologies Used
 
-- React 18.2
+- React 18.2+
 - React Router
 - React Redux
 - Axios
@@ -63,7 +63,6 @@ Check out how application looks live! You can test all the functionalities [**he
 
 ## Additional Notes
 
-- ESLint has been configured to ensure code quality and consistency.
 - The application follows a modular and component-based architecture.
 - The application has been designed to be responsive and compatible with different screen sizes.
 - CSS styling has been implemented without using any CSS frameworks.
