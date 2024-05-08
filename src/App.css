@@ -527,7 +527,7 @@ input[type="search"]::-webkit-search-cancel-button {
     FOOTER
 ////////////////////////// */
 .footer {
-    padding: 20px;
+    padding: 20px 0;
     text-align: center;
     width: 100%;
 }
