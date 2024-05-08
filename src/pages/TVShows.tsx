@@ -32,7 +32,7 @@ const TVShows = () => {
         } finally {
             setIsLoading(false);
         }
-    }, [redux.text]);
+    }, [redux.text, redux.page]);
 
     const fetchTop10 = useCallback(async () => {
         setIsLoading(true);

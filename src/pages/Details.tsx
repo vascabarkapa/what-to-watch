@@ -38,7 +38,7 @@ const Details: FC = () => {
                     {video ? (
                         <Trailer code={video?.key} />
                     ) : (
-                        media?.backdrop_path && <img src={ImageHelper.generateImageLink(ImageHelper.backdropImageSizes.w1280, media.backdrop_path)} alt="Cover image" loading="eager" />
+                        media?.backdrop_path && <img src={ImageHelper.generateImageLink(ImageHelper.backdropImageSizes.w1280, media.backdrop_path)} alt={media?.backdrop_path + " cover image"} loading="eager" />
                     )}
                     <div className="title-wrapper">
                         <h2>{(media as TVShow)?.name || (media as Movie)?.title}</h2>
@@ -49,7 +49,7 @@ const Details: FC = () => {
                         {media?.poster_path && (
                             <>
                                 <div className="poster">
-                                    <img src={ImageHelper.generateImageLink(ImageHelper.posterImageSizes.w500, media?.poster_path || '')} alt="Poster image" loading="eager" />
+                                    <img src={ImageHelper.generateImageLink(ImageHelper.posterImageSizes.w500, media?.poster_path || '')} alt={media?.poster_path + " poster image"} loading="eager" />
                                 </div>
                             </>
                         )}
