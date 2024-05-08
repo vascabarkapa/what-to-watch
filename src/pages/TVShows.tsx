@@ -13,6 +13,7 @@ import Loading from "../components/loading/Loading";
 import SearchNotFound from "../components/search/SearchNotFound";
 import Pagination from "../components/Pagination";
 import TVShowResponse from "../models/response/tvShowResponse";
+import Footer from "../components/Footer";
 
 const TVShows = () => {
     const dispatch = useDispatch();
@@ -99,6 +100,7 @@ const TVShows = () => {
                     <SearchNotFound media={'TV Shows'} />
                 )
             )}
+            <Footer />
         </div>
     );
 };

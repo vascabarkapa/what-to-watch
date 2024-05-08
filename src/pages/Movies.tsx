@@ -13,6 +13,7 @@ import Loading from "../components/loading/Loading";
 import SearchNotFound from "../components/search/SearchNotFound";
 import Pagination from "../components/Pagination";
 import MovieResponse from "../models/response/movieResponse";
+import Footer from "../components/Footer";
 
 const Movies = () => {
     const dispatch = useDispatch();
@@ -99,6 +100,7 @@ const Movies = () => {
                     <SearchNotFound media={'Movies'} />
                 )
             )}
+            <Footer />
         </div>
     );
 };
