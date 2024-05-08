@@ -5,7 +5,7 @@ const axiosInstance: AxiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config: any) => {
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTNhYjBiYzAzNzg1MGM5OGIxMmU1MmRhZWYyZTY4ZSIsInN1YiI6IjY2MzIyYTE1MmEwOWJjMDEyYzU4MzZiZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BDOE0A3HMkScxSNmOTxT25z6d-PojRVjQN8Ps7m6j2g';
+    const token = process.env.REACT_APP_TMDB_KEY;
 
     if (token) {
         config.headers = {
