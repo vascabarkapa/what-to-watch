@@ -73,14 +73,14 @@ const Details: FC = () => {
                             <div className="info">
                                 {media?.production_companies && media?.production_companies.length > 0 && (
                                     <>
-                                        <span>Production Companies:</span> {media?.production_companies?.map(production_company => production_company.name + " (" + production_company.origin_country + ")").join(', ')}
+                                        <span>Production Companies:</span> {media?.production_companies?.map(company => company.origin_country ? `${company.name} (${company.origin_country})` : company.name).join(', ')}
                                     </>
                                 )}
                             </div>
                             <div className="info">
                                 {media?.spoken_languages && media?.spoken_languages.length > 0 && (
                                     <>
-                                        <span>Spoken Languages:</span> {media?.spoken_languages?.map(spoken_language => (spoken_language.english_name + " (" + spoken_language.name + ")")).join(', ')}
+                                        <span>Spoken Languages:</span> {media?.spoken_languages?.map(spoken_language => spoken_language.name ? `${spoken_language.english_name} (${spoken_language.name})` : spoken_language.english_name).join(', ')}
                                     </>
                                 )}
                             </div>
