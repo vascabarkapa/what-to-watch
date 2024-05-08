@@ -58,6 +58,7 @@ Check out how application looks live! You can test all the functionalities [**he
 - React 18.2+
 - React Router
 - React Redux
+- React Pagination
 - Axios
 - Typescript
 
